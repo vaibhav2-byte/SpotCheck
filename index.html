@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#090c10">
+  <meta name="description" content="On-the-Spot Machine Setup Specialist: Low-Latency Mobile RAG for instant gym machine pin setup, seat height adjustment, and target muscle diagram in under 2 seconds.">
+  <title>SpotCheck RAG | Machine Setup Specialist</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Mobile PWA Container Shell -->
+  <main class="app-container" id="app-root">
+    
+    <!-- Top Header -->
+    <header class="app-header">
+      <div class="brand-wrapper">
+        <div class="brand-icon-box" id="brand-icon">⚡</div>
+        <div class="brand-text">
+          <h1>SpotCheck RAG</h1>
+          <div class="brand-sub">Machine Setup Specialist</div>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" id="settings-btn" title="Groq API & Settings" aria-label="Settings">⚙️</button>
+      </div>
+    </header>
+
+    <!-- Search & Camera Bar -->
+    <section class="search-section" aria-label="Machine Search">
+      <form id="search-form" class="search-bar-wrapper">
+        <div class="search-input-box">
+          <span class="search-icon-inline" id="search-pulse">🔍</span>
+          <input 
+            type="text" 
+            id="search-input" 
+            class="search-input" 
+            placeholder="Type or snap machine (e.g. Lat Pulldown, Leg Curl)..." 
+            autocomplete="off"
+            spellcheck="false"
+            value="Hammer Strength Iso-Lateral Front Lat Pulldown"
+          />
+        </div>
+        <button type="button" id="camera-btn" class="camera-action-btn" title="Snap Machine Photo" aria-label="Camera Snap">
+          <span class="cam-icon">📸</span>
+          <span class="cam-label">SNAP</span>
+        </button>
+        <input type="file" id="photo-input" accept="image/*" capture="environment" style="display: none;" />
+      </form>
+
+      <!-- Quick Gym Presets -->
+      <div class="presets-scroll-row" id="quick-presets" aria-label="Machine Quick Presets">
+        <!-- Dynamically populated -->
+      </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <div class="content-stage">
+      
+      <!-- Latency & SLA Telemetry Badge (< 2000ms target) -->
+      <section class="latency-card" id="latency-telemetry" aria-label="Latency Benchmark">
+        <!-- Populated dynamically with ms speed -->
+      </section>
+
+      <!-- Machine Identity & Voice Coach -->
+      <section class="machine-header-card" id="machine-header">
+        <div class="machine-info-col">
+          <div class="machine-badges-row">
+            <span class="brand-badge" id="machine-brand-badge">HAMMER STRENGTH</span>
+            <span class="category-badge" id="machine-category">BACK / PULL</span>
+          </div>
+          <h2 class="machine-title" id="machine-title">Hammer Strength Iso-Lateral Front Lat Pulldown</h2>
+          <!-- Key Adjustment Pins Badges -->
+          <div class="pins-bar" id="pins-chips-container"></div>
+        </div>
+        <button class="audio-coach-btn" id="read-audio-btn" title="Listen to setup steps hands-free">
+          <span>🔊 Voice Coach</span>
+        </button>
+      </section>
+
+      <!-- Seat Height Adjustment Tip Card -->
+      <section class="seat-tip-card" id="seat-adjustment-tip" aria-label="Seat Height Adjustment Tip">
+        <!-- Injected via JavaScript -->
+      </section>
+
+      <!-- Strict 3-Step Setup Guide Card -->
+      <section class="steps-card" aria-label="3-Step Setup Guide">
+        <div class="section-label-row">
+          <span class="section-title">3-Step Setup Guide</span>
+          <span class="constraints-pill">STRICT 3-BULLET SLA</span>
+        </div>
+        <ol class="steps-list" id="setup-steps-list">
+          <!-- Injected via JavaScript with bold adjustment pins -->
+        </ol>
+      </section>
+
+      <!-- Target Muscle Diagram Card (Anterior & Posterior SVG) -->
+      <section class="diagram-card" aria-label="Target Muscle Diagram">
+        <div class="section-label-row">
+          <span class="section-title">Target Muscle Anatomy</span>
+          <span class="constraints-pill">NEON ACTIVATION</span>
+        </div>
+        <div id="muscle-diagram-container">
+          <!-- Injected via MuscleDiagram class -->
+        </div>
+      </section>
+
+      <!-- Manufacturer Manual Citation & Provenance -->
+      <footer class="manual-footer-bar">
+        <div class="manual-tag-box">
+          <span class="manual-tag-label">VERIFIED MANUFACTURER MANUAL</span>
+          <span class="manual-tag-ref" id="manual-citation-tag">Loading manual specification...</span>
+        </div>
+        <button class="text-link-btn" id="view-manual-btn">Inspect Excerpt</button>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- Camera Vision & Snapshot Modal -->
+  <div class="modal-overlay" id="camera-modal">
+    <div class="modal-content-card">
+      <div class="modal-header">
+        <h3>📸 Machine Camera Vision</h3>
+        <button class="modal-close-btn" id="close-camera-modal">&times;</button>
+      </div>
+      <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 12px;">
+        Point phone camera at gym machine or select a snapshot preset for instant edge recognition:
+      </p>
+      <div class="cam-sample-grid" id="camera-sample-gallery">
+        <!-- Sample machine cards injected here -->
+      </div>
+      <div style="margin-top: 14px;">
+        <button class="primary-action-btn" onclick="document.getElementById('photo-input').click()">
+          📁 Choose Custom Image File
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Manual Citation Modal -->
+  <div class="modal-overlay" id="manual-modal">
+    <div class="modal-content-card">
+      <div class="modal-header">
+        <h3 id="manual-modal-title">Manual Excerpt</h3>
+        <button class="modal-close-btn" id="close-manual-modal">&times;</button>
+      </div>
+      <div style="font-size: 0.72rem; color: #00f5d4; font-family: var(--font-mono); margin-bottom: 8px;" id="manual-modal-ref"></div>
+      <pre class="modal-pre-box" id="manual-modal-body"></pre>
+    </div>
+  </div>
+
+  <!-- Settings Modal (Groq API Key) -->
+  <div class="modal-overlay" id="settings-modal">
+    <div class="modal-content-card">
+      <div class="modal-header">
+        <h3>⚡ Engine & Groq Config</h3>
+        <button class="modal-close-btn" id="close-settings-modal">&times;</button>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="groq-api-input">Groq API Key (Optional)</label>
+        <input type="password" id="groq-api-input" class="form-input" placeholder="gsk_..." />
+        <p style="font-size: 0.7rem; color: #94a3b8; margin-top: 6px;">
+          Leave blank to use the built-in ultra-fast Edge RAG Synthesizer (sub-100ms response time with 100% manufacturer manual fidelity).
+        </p>
+      </div>
+      <button class="primary-action-btn" id="save-api-key">Save Configuration</button>
+    </div>
+  </div>
+
+  <!-- Toast Notification element -->
+  <div class="toast-notice" id="toast"></div>
+
+  <!-- Application Logic -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
