@@ -1,0 +1,30 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: spotcheck-frontend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - spotcheck-net
+
+  backend:
+    build:
+      context: ./python_backend
+      dockerfile: Dockerfile
+    container_name: spotcheck-backend
+    ports:
+      - "5001:5001"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY:-}
+    restart: unless-stopped
+    networks:
+      - spotcheck-net
+
+networks:
+  spotcheck-net:
+    driver: bridge

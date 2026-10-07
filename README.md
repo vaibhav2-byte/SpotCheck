@@ -219,7 +219,24 @@ cd python_backend
 ```
 Visit: `http://localhost:5001/`
 
-### 3. Run Automated Tests
+### 3. Docker Containerization (Recommended)
+Run both the frontend web client and the FastHTML + LanceDB backend simultaneously using Docker Compose:
+```bash
+# Build and start both containers
+docker compose up --build
+
+# Or run in detached background mode
+docker compose up -d --build
+```
+- **Frontend PWA**: `http://localhost:8080`
+- **FastHTML Backend**: `http://localhost:5001`
+
+To stop containers:
+```bash
+docker compose down
+```
+
+### 4. Run Automated Tests
 ```powershell
 # Run all unit and integration tests
 & "$HOME\.local\bin\uv.exe" run python tests\test_all.py
